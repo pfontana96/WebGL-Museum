@@ -84,16 +84,16 @@ KeyboardControls.prototype.update = function(dt){
 
 function keyUp(event){
 	switch(event.keyCode){
-		case 33 : // HAUT
+		case 87 : // HAUT
 			controls.plusHaut = false ; 
 			break ; 
-		case 34 : // BAS
+		case 83 : // BAS
 			controls.plusBas = false ;
 			break ; 
 		case 37 : // GAUCHE
 			controls.aGauche = false ; 
 			break ; 
-		case 38 : // HAUT
+		case 38 : // AVANCE
 			controls.enAvant = false ;
 			break ; 
 		case 39 : // DROITE
@@ -111,16 +111,16 @@ function keyDown(event){
 	//mouseClicked=false;
 	console.log("KEYDOWN") ; 
 	switch(event.keyCode){
-		case 33 : // HAUT
+		case 87 : // HAUT
 			controls.plusHaut = true ; 
 			break ; 
-		case 34 : // BAS
+		case 83 : // BAS
 			controls.plusBas = true ;
 			break ; 
 		case 37 : // GAUCHE
 			controls.aGauche = true ; 
 			break ; 
-		case 38 : // HAUT
+		case 38 : // AVANCE
 			controls.enAvant = true ;
 			break ; 
 		case 39 : // DROITE

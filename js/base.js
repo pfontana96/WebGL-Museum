@@ -124,19 +124,14 @@ function creerEscalier(nom, height,width, length){
 	floor = creerLambertTexture("assets/textures/sols_plafonds/parquet2.jpg", 0xaaaaaa, 1, 1);
 	for(var i = 0; i < nSteps; i++){
 		rStep = creerCloison(nom.concat('_riser_', i.toString()), width, riser, 0.1, concrete);
-		//rStep.position.set(0,i*riser,i*tread + 0.05);
 		rStep.position.set(0,i*riser,i*tread - tread + 0.05);
 		tStep = creerCloison(nom.concat('_tread_', i.toString()), width, 0.1, tread, concrete);
-		//tStep.position.set(0,(i+1)*riser,i*tread + tread/2);
 		tStep.position.set(0,(i+1)*riser,i*tread - tread/2);
 		sideStep_l = creerCloison(nom.concat('_sideL_', i.toString()), 0.1, riser*(i+1), tread, concrete);
 		sideStep_r = creerCloison(nom.concat('_sideR_', i.toString()), 0.1, riser*(i+1), tread, concrete);
-		//sideStep_l.position.set(width/2 - 0.05, 0, i*tread + tread/2);
 		sideStep_l.position.set(width/2 - 0.05, 0, i*tread- tread/2);
-		//sideStep_r.position.set(-width/2 + 0.05, 0, i*tread + tread/2);
 		sideStep_r.position.set(-width/2 + 0.05, 0, i*tread- tread/2);
 		upStep = creerSol(nom.concat('_up_', i.toString()), width, tread, floor);
-		//upStep.position.set(0,(i+1)*riser+0.1,i*tread + tread/2)
 		upStep.position.set(0,(i+1)*riser+0.1,i*tread- tread/2)
 		groupe.add(rStep);
 		groupe.add(tStep);
@@ -147,7 +142,6 @@ function creerEscalier(nom, height,width, length){
 	}
 	return groupe;
 }
-
 
 function creerPoster(nom,largeur, hauteur, nomImage){
 	var geo   = new THREE.PlaneGeometry(largeur, hauteur) ; 

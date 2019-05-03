@@ -74,7 +74,7 @@ function parser(){
 			var depth   = params.depth ;   
 			var artist = params.artist ;   
 			var salle   = creerSalle(nom,length,depth,artist) ; 
-			enregistrerDansAnnuaire(nom,salle) ; 
+			enregistrerDansAnnuaire(nom,salle) ;
 		} else
 		if(_obj.type == "graph"){
 			console.log("GRAPH : ",nom) ;

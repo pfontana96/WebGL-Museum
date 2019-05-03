@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Activités three.js</title>
+		<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+	<script src="lib/three.min.js"></script>
+	<script src="js/base.js"></script>
+	<script src="js/parser.js"></script>
+	<script src="js/controleur.js"></script>
+	<script>
+
+		var temps = 0.0 ; 
+		var dt ; 
+		var chrono = null ; 
+		var annuaire = null ; 
+		var scene = null;
+		var renderer = null;
+		var camera = null;
+
+		var listener = null ;
+		var sound  = null ; 
+		var sound1 = null ; 
+ 
+		var controls = null ; 
+		var windowHalfX = window.innerWidth  / 2.0 ; 
+		var windowHalfY = window.innerHeight / 2.0 ; 
+
+		var pointeur ;
+
+		var mouseX = mouseY = 0.0 ; 
+
+		var data ; 
+
+		function init(){
+
+			chrono = new THREE.Clock() ; 
+		
+			annuaire = {} ; 
+
+			renderer = new THREE.WebGLRenderer();
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			document.body.appendChild(renderer.domElement);
+
+			scene = new THREE.Scene() ; 
+			enregistrerDansAnnuaire("scene",scene) ; 
+
+			camera = new THREE.PerspectiveCamera(70.0, window.innerWidth/window.innerHeight, 0.1, 100.0) ; 
+			camera.position.set(0,1.7,10.0) ; 
+			camera.lookAt(new THREE.Vector3(0.0,1.7,0.0)) ; 
+
+			listener = new THREE.AudioListener() ; 
+			camera.add(listener) ;
+
+			window.addEventListener('resize', function(){
+				windowHalfX = window.innerWidth  / 2.0 ; 
+				windowHalfY = window.innerHeight / 2.0 ; 
+				camera.aspect = window.innerWidth / window.innerHeight ;
+				camera.updateProjectionMatrix() ; 
+				renderer.setSize(window.innerWidth , window.innerHeight) ; 
+				
+			}) ; 
+
+
+
+			controls = new KeyboardControls(camera) ; 
+			console.log(controls) ; 
+
+			window.addEventListener('keydown',   keyDown   ,    false) ;
+			window.addEventListener('keyup',     keyUp     ,    false) ;
+			window.addEventListener('mousemove', mouseMove ,    false) ;
+			window.addEventListener('mousedown', mouseDown ,    false) ;
+
+			chrono.start() ; 
+
+		} ; 
+
+		function enregistrerDansAnnuaire(nom,objet){
+			annuaire[nom] = objet ; 
+		}
+
+		function chercherDansAnnuaire(nom){
+			return (annuaire[nom] || null) ; 
+		}
+
+
+		function creerScene(){
+
+			//Section audio
+			//var listener = new THREE.AudioListener() ; 
+			//camera.add(listener) ; 
+
+    			var geo = new THREE.BoxGeometry(2,2,2) ; 
+			var material = new THREE.MeshNormalMaterial() ;
+			var cube = new THREE.Mesh(geo,material) ;
+			cube.position.set(0,3,0) ;   
+			//scene.add(cube) ; 
+
+
+
+			//sound2 = creerSourceAudio3d(listener,"assets/sounds/oiseaux/piste_5.mp3",
+                         //                                    {"loop":true}) ;
+
+
+
+
+			//scene.add(creerSoleil()) ;
+			salles_lights = [];
+			salles_lights.push(creerSourcePonctuelle(0xffffff, 6, 6, 1));
+			salles_lights.push(creerSourcePonctuelle(0xffffff, 6, 6, 1));
+			salles_lights.push(creerSourcePonctuelle(0xffffff, 6, 6, 1));
+	
+			hall_lights = [];
+			hall_lights.push(creerSourcePonctuelle(0xffffff, 5, 6, 2));
+			hall_lights.push(creerSourcePonctuelle(0xffffff, 5, 6, 2));
+			hall_lights.push(creerSourcePonctuelle(0xffffff, 5, 6, 2));
+			// hall_lights.push(creerSourcePonctuelle(0xffffff, 5, 6, 2));
+			// hall_lights.push(creerSourcePonctuelle(0xffffff, 5, 6, 2));
+			// hall_lights.push(creerSourcePonctuelle(0xffffff, 5, 6, 2));
+			
+
+			var i;
+			for(i = 0; i < salles_lights.length; i++){
+				salles_lights[i].position.set(-5 + 10*i, 2.8, -10);
+				scene.add(salles_lights[i]);
+			}
+
+			for(i = 0; i < hall_lights.length; i++){
+				var y = 3, z = 5;
+				if(i>2){
+					y = 5.9;
+					z = -10;
+				}
+				hall_lights[i].position.set(-5 + 10*i, y, z);
+				scene.add(hall_lights[i]);
+			}
+			//scene.add(light2) 
+			pointeur = creerSphere("pointeur",0.05,16,materiauRouge) ; 
+			scene.add(pointeur) ; 
+
+			//parser() ;
+			chargerDocument() ;  
+			console.log("Fin de création de la scène") ; 
+		}
+
+
+		function animate(){
+
+			dt = chrono.getDelta() ; 
+			temps += dt ; 
+			requestAnimationFrame(animate) ; 
+			controls.update(dt) ; 
+			renderer.render(scene, camera) ; 
+		}
+
+
+
+		init() ; 
+		creerScene() ; 
+		animate() ; 
+
+
+
+
+		
+
+		
+
+	</script>
+</html>

@@ -9,4 +9,4 @@ Virtual Museum unsing WebGL and ThreeJs
 
 To play with the museum you should open index.html in your browser
 
-Arrow Keys and w/s (up and down)
+Camera displacement: Arrow Keys and w/s (up and down)

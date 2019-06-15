@@ -209,10 +209,6 @@
 			{"fonc":"orienterX", "objet":"mur_u_a", "params":{"angle":1.57}},
 			{"fonc":"placerXYZ", "objet":"mur_d_a", "params":{"x":0, "y":3, "z": -1}},
 			{"fonc":"orienterX", "objet":"mur_d_a", "params":{"angle":1.57}},
-			{"fonc":"placerXYZ", "objet":"mur_ouest_o_a", "params":{"x":1.25, "y":0, "z":0}},
-			{"fonc":"orienterY", "objet":"mur_ouest_o_a", "params":{"angle":1.57}},
-			{"fonc":"placerXYZ", "objet":"mur_est_o_a", "params":{"x":-1.25, "y":0, "z":0}},
-			{"fonc":"orienterY", "objet":"mur_est_o_a", "params":{"angle":1.57}},
 			{"fonc":"placerXYZ", "objet":"mur_ouest_i_a", "params":{"x":1, "y":0, "z":0}},
 			{"fonc":"orienterY", "objet":"mur_ouest_i_a", "params":{"angle":1.57}},
 			{"fonc":"placerXYZ", "objet":"mur_est_i_a", "params":{"x":-1, "y":0, "z":0}},
@@ -222,6 +218,11 @@
 			{"fonc":"placerXYZ", "objet":"mur_sud_1_a", "params":{"x":-0.5, "y":0, "z":-0.9}},
 			{"fonc":"placerXYZ", "objet":"mur_sud_2_a", "params":{"x":0.5, "y":0, "z":-1.1}},
 			{"fonc":"placerXYZ", "objet":"ascenseur", "params":{"x":16.20, "y":0, "z": -3.5}},
+
+			{"fonc":"placerXYZ", "objet":"mur_ouest_o_a", "params":{"x":17.45, "y":0, "z":-3.5}},
+			{"fonc":"orienterY", "objet":"mur_ouest_o_a", "params":{"angle":1.57}},
+			{"fonc":"placerXYZ", "objet":"mur_est_o_a", "params":{"x":14.95, "y":0, "z":-3.5}},
+			{"fonc":"orienterY", "objet":"mur_est_o_a", "params":{"angle":1.57}},
 
 			{"fonc":"placerXYZ", "objet":"gph01", "params":{"x":9, "y":1, "z": 3}},
 			{"fonc":"placerXYZ", "objet":"esc01", "params":{"x":18.75, "y":0, "z": 7.5}},
@@ -264,8 +265,6 @@
 
 			{"rel":"parentDe", "sujet":"ascenseur", "objet":"mur_u_a"},
 			{"rel":"parentDe", "sujet":"ascenseur", "objet":"mur_d_a"},
-			{"rel":"parentDe", "sujet":"ascenseur", "objet":"mur_ouest_o_a"},
-			{"rel":"parentDe", "sujet":"ascenseur", "objet":"mur_est_o_a"},
 			{"rel":"parentDe", "sujet":"ascenseur", "objet":"mur_ouest_i_a"},
 			{"rel":"parentDe", "sujet":"ascenseur", "objet":"mur_est_i_a"},
 			{"rel":"parentDe", "sujet":"ascenseur", "objet":"mur_nord_1_a"},
@@ -273,6 +272,9 @@
 			{"rel":"parentDe", "sujet":"ascenseur", "objet":"mur_sud_1_a"},
 			{"rel":"parentDe", "sujet":"ascenseur", "objet":"mur_sud_2_a"},
 			{"rel":"parentDe","sujet":"scene","objet":"ascenseur"},
+
+			{"rel":"parentDe", "sujet":"scene", "objet":"mur_ouest_o_a"},
+			{"rel":"parentDe", "sujet":"scene", "objet":"mur_est_o_a"},
 
 			{"rel":"parentDe","sujet":"scene","objet":"gph01"},
 

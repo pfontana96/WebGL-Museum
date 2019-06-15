@@ -57,6 +57,18 @@ function creerGraph(nom, radius, hateur, materiau, num){
 	return groupe;
 }
 
+function creerAtomium(name, length){
+	var groupe = new THREE.Group()
+	groupe.name = name;
+	material = creerLambertTexture("assets/textures/murs/metal.jpg", 0xaaaaaa, 1, 1);
+	for(var i = 0; i < 8; i++){
+		sphere = creerSphere(name.concat('sphere_', i.toString()), length/4, 16, material);
+		sphere.position.set(Math.pow(-1, i)*length/2, Math.pow(-1, Math.floor(i/2))*length/2, Math.pow(-1, Math.floor(i/4))*length/2);
+		groupe.add(sphere);
+	}
+	return groupe;
+}
+
 function creerSalle(nom, length, depth, artist){
 	var group = new THREE.Group();
 	concrete = creerLambertTexture("assets/textures/murs/concrete.jpg", 0xaaaaaa, 1, 1);

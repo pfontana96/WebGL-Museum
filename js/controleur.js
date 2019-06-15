@@ -8,7 +8,7 @@ var KeyboardControls = function(object){
 	this.direction = new THREE.Vector3(1,0,0) ; 
 	this.cible     = new THREE.Vector3(2,1.7,5) ; 
 
-	this.vitesse   = 2.0 ; 
+	this.vitesse   = 5.0 ; 
 
 	this.plusHaut  = false ; 
 	this.plusBas   = false ; 
@@ -164,3 +164,20 @@ function mouseDown(event){
 	}
 }
 
+var ObjectController = function(scene){
+	this.scene = scene;
+}
+
+ObjectController.prototype.update = function(t){
+	// Controle du ascenseur
+	ElevatorController(this.scene.getObjectByName("ascenseur"), t);
+}
+
+function ElevatorController(elevator, t){
+	
+	elevator.translateY(-Math.cos(t)/18);
+}
+
+function AtomiumController(atomium, t){
+	
+}

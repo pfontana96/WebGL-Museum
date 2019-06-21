@@ -90,7 +90,7 @@ function creerDec(name){
 	var cyl = new THREE.CylinderGeometry(0.3,0.8,0.8,16);
 	material = creerLambertTexture("assets/textures/sculptures/black-marmol.jpg", 0xaaaaaa, 1, 1);
 	var base = new THREE.Mesh(cyl, material);
-	base.position.set(0,0.5,0);
+	base.position.set(0,0.4,0);
 	group.add(base);
 	var head = creerSphere('sphere', 0.3, 16, material);
 	head.position.set(0,1.5,0);
@@ -287,7 +287,10 @@ function creerSourceAudio3d(listener, fileName, loop, volume, distance){
 	return sound ;
 }
 
-
+function creerAmbientLight(){
+	var light = new THREE.AmbientLight(0xffffff,0.5);
+	return light;
+}
 
 // =====================
 // Création de matériaux

@@ -145,6 +145,10 @@
 				hall_lights[i].position.set(-5 + 10*i, y, z);
 				scene.add(hall_lights[i]);
 			}
+
+			env_light = creerAmbientLight();
+			env_light.position.set(1.25, 4, 4)
+
 			//scene.add(light2) 
 			pointeur = creerSphere("pointeur",0.05,16,materiauRouge) ; 
 			
@@ -155,9 +159,14 @@
 			dec = creerDec("dec2");
 			dec.position.set(3,0,0.8);
 			scene.add(dec);
+			for(var i = 0; i <4; i++){
+
+			}
 			adn = creerADN();
 			adn.position.set(11,0.15,4);
 			scene.add(adn);
+
+
 
 			//parser() ;
 			chargerDocument() ;  

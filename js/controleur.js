@@ -167,6 +167,8 @@ ObjectController.prototype.update = function(t){
 		DoorController(salle);
 	}
 	ADNController(scene.getObjectByName("ADN"));
+	DecController(scene.getObjectByName("dec1"), t);
+	DecController(scene.getObjectByName("dec2"), t);
 	
 }
 
@@ -204,9 +206,13 @@ function ADNController(adn){
 	var dy = adn.position.y - camera.position.y;
 	var dz = adn.position.z - camera.position.z;
 	var delta = Math.sqrt(Math.pow(dx,2) + Math.pow(dy,2) + Math.pow(dz,2));
-	console.log(delta);
 	if(delta < 15){
-		adn.rotateZ(1/delta);
+		adn.rotateZ(2/delta);
 	}
 }
 
+function DecController(dec, t){
+	sph = dec.getObjectByName("sphere");
+	//sph.translateY(0.5*Math.sin(t));
+	sph.position.y = 0.3*Math.sin(t) + 1.5;
+}

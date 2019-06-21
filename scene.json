@@ -42,7 +42,20 @@
 			{"type":"texte", "nom":"texte01",
                                            "params":{"largeur":10.0, 
                                                      "hauteur":10.0,
-                                                     "texte":"BONJOUR"}},
+													 "texte":"BONJOUR"}},
+			{"type":"texte", "nom":"pica",
+                                           "params":{"largeur":1.5, 
+                                                     "hauteur":8.0,
+													 "texte":"PICASSO"}},
+			{"type":"texte", "nom":"vang",
+                                           "params":{"largeur":1.5, 
+                                                     "hauteur":8.0,
+													 "texte":"VAN GOGH"}},
+			{"type":"texte", "nom":"dali",
+                                           "params":{"largeur":1.5, 
+                                                     "hauteur":8.0,
+													 "texte":"DALÍ"}},
+													 
 
 			{"type":"cloison", "nom":"cloison01",
                                            "params":{"largeur":10.0, 
@@ -239,10 +252,16 @@
 			
 			{"fonc":"placerXYZ", "objet":"sal01", "params":{"x":-5, "y":0, "z": -5}},
 			{"fonc":"orienterY", "objet":"sal01", "params":{"angle":3.14}},
+			{"fonc":"placerXYZ", "objet":"pica", "params":{"x":-8.75, "y":3.5, "z": -4.9}},
+
 			{"fonc":"placerXYZ", "objet":"sal02", "params":{"x": 5, "y":0, "z": -5}},
 			{"fonc":"orienterY", "objet":"sal02", "params":{"angle":3.14}},
+			{"fonc":"placerXYZ", "objet":"vang", "params":{"x":1.25, "y":3.5, "z": -4.9}},
+
 			{"fonc":"placerXYZ", "objet":"sal03", "params":{"x":15, "y":0, "z": -5}},
-			{"fonc":"orienterY", "objet":"sal03", "params":{"angle":3.14}}
+			
+			{"fonc":"orienterY", "objet":"sal03", "params":{"angle":3.14}},
+			{"fonc":"placerXYZ", "objet":"dali", "params":{"x":11.25, "y":3.5, "z": -4.9}}
 
 			],
 	"relations" : [
@@ -287,6 +306,10 @@
 			{"rel":"parentDe", "sujet":"scene", "objet":"mur_est_o_a"},
 
 			{"rel":"parentDe","sujet":"scene","objet":"gph01"},
+
+			{"rel":"parentDe","sujet":"scene","objet":"pica"},
+			{"rel":"parentDe","sujet":"scene","objet":"vang"},
+			{"rel":"parentDe","sujet":"scene","objet":"dali"},
 
 			{"rel":"parentDe","sujet":"scene","objet":"sal01"},
 			{"rel":"parentDe","sujet":"scene","objet":"sal02"},

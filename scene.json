@@ -13,6 +13,9 @@
 			{"type":"lambertTexture", "nom":"textureSol",
                                                   "params":{"image":"assets/textures/sols_plafonds/parquet2.jpg",
 												  "couleur":"gris","nx":50,"ny":50}},
+			{"type":"lambertTexture", "nom":"textureDarkWood",
+                                                  "params":{"image":"assets/textures/sols_plafonds/dark-wood.jpg",
+												  "couleur":"gris","nx":4,"ny":4}},
 			{"type":"lambertTexture", "nom":"textureBois",
                                                   "params":{"image":"assets/textures/murs/wood.jpg",
 												  "couleur":"gris","nx":1,"ny":1}},
@@ -89,6 +92,8 @@
 													"materiau":"textureDante"}},
 			{"type":"sol",     "nom":"sol_2",         
 				"params":{"largeur":30.0,"profondeur":15.0,"materiau":"textureSol"}},
+			{"type":"sol",     "nom":"roof",         
+				"params":{"largeur":30.0,"profondeur":45.0,"materiau":"textureDarkWood"}},
 			
 			{"type":"poster", "nom":"mural1",
 				"params":{"largeur":5.0, 
@@ -196,6 +201,9 @@
 			{"fonc":"placerXYZ", "objet":"hall", "params":{"x":5, "y":0, "z":2.5}},
 
 			{"fonc":"placerXYZ", "objet":"sol_2", "params":{"x":5, "y":3.01,"z":-12.5}},
+			{"fonc":"placerXYZ", "objet":"roof", "params":{"x":5, "y":5.99,"z":-12.5}},
+			{"fonc":"orienterX", "objet":"roof", "params":{"angle":1.57}},
+
 
 			{"fonc":"placerXYZ", "objet":"mur_nord_salle_up", "params":{"x":0, "y":0, "z": -7.5}},
 			{"fonc":"placerXYZ", "objet":"mur_sud_salle_up", "params":{"x":-2.5, "y":0, "z": 7.5}},
@@ -205,18 +213,18 @@
 			{"fonc":"orienterY", "objet":"mur_est_salle_up", "params":{"angle":1.57}},
 			{"fonc":"placerXYZ", "objet":"salle_up", "params":{"x":5, "y":3, "z":-12.5}},
 
-			{"fonc":"placerXYZ", "objet":"mur_u_a", "params":{"x":0, "y":0, "z": -1}},
+			{"fonc":"placerXYZ", "objet":"mur_u_a", "params":{"x":0, "y":1.5, "z": -1}},
 			{"fonc":"orienterX", "objet":"mur_u_a", "params":{"angle":1.57}},
-			{"fonc":"placerXYZ", "objet":"mur_d_a", "params":{"x":0, "y":3, "z": -1}},
+			{"fonc":"placerXYZ", "objet":"mur_d_a", "params":{"x":0, "y":4.5, "z": -1}},
 			{"fonc":"orienterX", "objet":"mur_d_a", "params":{"angle":1.57}},
-			{"fonc":"placerXYZ", "objet":"mur_ouest_i_a", "params":{"x":1, "y":0, "z":0}},
+			{"fonc":"placerXYZ", "objet":"mur_ouest_i_a", "params":{"x":1, "y":1.5, "z":0}},
 			{"fonc":"orienterY", "objet":"mur_ouest_i_a", "params":{"angle":1.57}},
-			{"fonc":"placerXYZ", "objet":"mur_est_i_a", "params":{"x":-1, "y":0, "z":0}},
+			{"fonc":"placerXYZ", "objet":"mur_est_i_a", "params":{"x":-1, "y":1.5, "z":0}},
 			{"fonc":"orienterY", "objet":"mur_est_i_a", "params":{"angle":1.57}},
-			{"fonc":"placerXYZ", "objet":"mur_nord_1_a", "params":{"x":-0.5, "y":0, "z":1.1}},
-			{"fonc":"placerXYZ", "objet":"mur_nord_2_a", "params":{"x":0.5, "y":0, "z":0.9}},
-			{"fonc":"placerXYZ", "objet":"mur_sud_1_a", "params":{"x":-0.5, "y":0, "z":-0.9}},
-			{"fonc":"placerXYZ", "objet":"mur_sud_2_a", "params":{"x":0.5, "y":0, "z":-1.1}},
+			{"fonc":"placerXYZ", "objet":"mur_nord_1_a", "params":{"x":-0.5, "y":1.5, "z":1.1}},
+			{"fonc":"placerXYZ", "objet":"mur_nord_2_a", "params":{"x":0.5, "y":1.5, "z":0.9}},
+			{"fonc":"placerXYZ", "objet":"mur_sud_1_a", "params":{"x":-0.5, "y":1.5, "z":-0.9}},
+			{"fonc":"placerXYZ", "objet":"mur_sud_2_a", "params":{"x":0.5, "y":1.5, "z":-1.1}},
 			{"fonc":"placerXYZ", "objet":"ascenseur", "params":{"x":16.20, "y":0, "z": -3.5}},
 
 			{"fonc":"placerXYZ", "objet":"mur_ouest_o_a", "params":{"x":17.45, "y":0, "z":-3.5}},
@@ -224,7 +232,7 @@
 			{"fonc":"placerXYZ", "objet":"mur_est_o_a", "params":{"x":14.95, "y":0, "z":-3.5}},
 			{"fonc":"orienterY", "objet":"mur_est_o_a", "params":{"angle":1.57}},
 
-			{"fonc":"placerXYZ", "objet":"gph01", "params":{"x":9, "y":1, "z": 3}},
+			{"fonc":"placerXYZ", "objet":"gph01", "params":{"x":-5, "y":1, "z": 5}},
 			{"fonc":"placerXYZ", "objet":"esc01", "params":{"x":18.75, "y":0, "z": 7.5}},
 			{"fonc":"orienterY", "objet":"esc01", "params":{"angle":3.14}},
 
@@ -254,6 +262,8 @@
 			{"rel":"parentDe","sujet":"scene","objet":"hall"},
 
 			{"rel":"parentDe","sujet":"scene","objet":"sol_2"},
+			{"rel":"parentDe","sujet":"scene","objet":"roof"},
+
 
 			{"rel":"parentDe", "sujet":"salle_up", "objet":"mur_nord_salle_up"},
 			{"rel":"parentDe", "sujet":"salle_up", "objet":"mur_sud_salle_up"},

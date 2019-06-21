@@ -72,16 +72,6 @@ KeyboardControls.prototype.update = function(dt){
 }
 
 
-
-
-
-
-
-
-
-
-
-
 function keyUp(event){
 	switch(event.keyCode){
 		case 87 : // HAUT
@@ -171,13 +161,52 @@ var ObjectController = function(scene){
 ObjectController.prototype.update = function(t){
 	// Controle du ascenseur
 	ElevatorController(this.scene.getObjectByName("ascenseur"), t);
+	for(var i=1; i<4; i++){
+		var str = "sal0";
+		var salle = this.scene.getObjectByName(str.concat(i));
+		DoorController(salle);
+	}
+	ADNController(scene.getObjectByName("ADN"));
+	
 }
 
 function ElevatorController(elevator, t){
 	
-	elevator.translateY(-Math.cos(t)/18);
+	elevator.position.y = 1.5*Math.sin(t);
+	//elevator.translateY(-Math.cos(t)/18);
 }
 
 function AtomiumController(atomium, t){
 	
 }
+
+function DoorController(salle){
+	door = salle.getObjectByName("door");
+	var dx = salle.position.x - 3.75 - camera.position.x;
+	var dy = salle.position.y - camera.position.y;
+	var dz = salle.position.z - camera.position.z;
+	var targetAngle = 0;
+	var targetX = 3.75;
+	var targetZ = 0;
+	if(Math.abs(dz)<2 && Math.abs(dx)<2 && Math.abs(dy)<3){
+		targetAngle = -Math.PI/2;
+		targetX -= 1.15;
+		targetZ += 1.25;
+	}
+	door.position.x = targetX;
+	door.position.z = targetZ;
+	door.rotation.y = targetAngle;
+}
+
+function ADNController(adn){
+
+	var dx = adn.position.x - 3.75 - camera.position.x;
+	var dy = adn.position.y - camera.position.y;
+	var dz = adn.position.z - camera.position.z;
+	var delta = Math.sqrt(Math.pow(dx,2) + Math.pow(dy,2) + Math.pow(dz,2));
+	console.log(delta);
+	if(delta < 15){
+		adn.rotateZ(1/delta);
+	}
+}
+

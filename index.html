@@ -70,7 +70,7 @@
 			controls = new KeyboardControls(camera) ; 
 			console.log(controls) ; 
 
-			objControl = new ObjectController(scene);
+			objControl = new ObjectController(scene, camera);
 			console.log(objControl);
 
 			window.addEventListener('keydown',   keyDown   ,    false) ;
@@ -121,6 +121,9 @@
 			hall_lights.push(creerSourcePonctuelle(0xffffff, 5, 6, 2));
 			hall_lights.push(creerSourcePonctuelle(0xffffff, 5, 6, 2));
 			hall_lights.push(creerSourcePonctuelle(0xffffff, 5, 6, 2));
+			hall_lights.push(creerSourcePonctuelle(0xffffff, 5, 6, 2));
+			hall_lights.push(creerSourcePonctuelle(0xffffff, 5, 6, 2));
+			hall_lights.push(creerSourcePonctuelle(0xffffff, 5, 6, 2));
 			// hall_lights.push(creerSourcePonctuelle(0xffffff, 5, 6, 2));
 			// hall_lights.push(creerSourcePonctuelle(0xffffff, 5, 6, 2));
 			// hall_lights.push(creerSourcePonctuelle(0xffffff, 5, 6, 2));
@@ -134,9 +137,10 @@
 
 			for(i = 0; i < hall_lights.length; i++){
 				var y = 3, z = 5;
-				if(i>2){
-					y = 5.9;
+				if(i>2 && i<6){
 					z = -10;
+				}else if(i>2){
+					z = -20;
 				}
 				hall_lights[i].position.set(-5 + 10*i, y, z);
 				scene.add(hall_lights[i]);
@@ -145,9 +149,15 @@
 			pointeur = creerSphere("pointeur",0.05,16,materiauRouge) ; 
 			
 
-			atomium = creerAtomium("ato", 2);
-			atomium.position.set(0,1.3,20);
-			scene.add(atomium);
+			dec = creerDec("dec1");
+			dec.position.set(-3,0,0.8);
+			scene.add(dec);
+			dec = creerDec("dec2");
+			dec.position.set(3,0,0.8);
+			scene.add(dec);
+			adn = creerADN();
+			adn.position.set(11,0.15,4);
+			scene.add(adn);
 
 			//parser() ;
 			chargerDocument() ;  

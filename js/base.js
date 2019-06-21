@@ -57,6 +57,48 @@ function creerGraph(nom, radius, hateur, materiau, num){
 	return groupe;
 }
 
+function creerADN(){
+	var name = "ADN";
+	var group = creerGroupe(name);
+	var num = 10;
+	var height = 6;
+	var r = 0.30;
+	var z = 0;
+	var dz = height/num;
+	var spheres_1 = [];
+	var spheres_2 = [];
+	var lava = creerLambertTexture("assets/textures/sculptures/marmol.jpg", 0xaaaaaa, 1, 1);
+	var ice = creerLambertTexture("assets/textures/sculptures/black-marmol	.jpg", 0xaaaaaa, 1, 1);
+	var light = creerSourcePonctuelle(0xffffff, 5, 6, 2);
+	light.position.set(0,0,height/2);
+	group.add(light);
+	for(var i = 0; i<num; i++){
+		z = i*dz;
+		spheres_1.push(creerSphere(String.concat("spheres_1_",i), r, 16, lava));
+		spheres_2.push(creerSphere(String.concat("spheres_2_",i), r, 16, ice));
+		spheres_1[i].position.set(Math.cos(i), Math.sin(i), i*dz);
+		spheres_2[i].position.set(-Math.cos(i), -Math.sin(i), i*dz);
+		group.add(spheres_1[i]);
+		group.add(spheres_2[i]);
+	}
+	group.rotateX(-1.57);
+	return group;
+}
+
+function creerDec(name){
+	var group = creerGroupe(name);
+	var cyl = new THREE.CylinderGeometry(0.3,0.8,0.8,16);
+	material = creerLambertTexture("assets/textures/sculptures/black-marmol.jpg", 0xaaaaaa, 1, 1);
+	var base = new THREE.Mesh(cyl, material);
+	base.position.set(0,0.5,0);
+	group.add(base);
+	var head = creerSphere('sphere', 0.3, 16, material);
+	head.position.set(0,1.5,0);
+	group.add(head);
+	return group; 
+	
+}
+
 function creerAtomium(name, length){
 	var groupe = new THREE.Group()
 	groupe.name = name;
@@ -70,8 +112,17 @@ function creerAtomium(name, length){
 }
 
 function creerSalle(nom, length, depth, artist){
-	var group = new THREE.Group();
+	var group = creerGroupe(nom);
 	concrete = creerLambertTexture("assets/textures/murs/concrete.jpg", 0xaaaaaa, 1, 1);
+	wood_door = creerLambertTexture("assets/textures/portes/wood-simple.jpg", 0xaaaaaa, 1, 1);
+	roof_text = creerLambertTexture("assets/textures/sols_plafonds/dark-wood.jpg", 0xaaaaaa, 1, 1);
+	roof = creerSol('roof', length, depth, roof_text);
+	roof.position.set(0,2.99,depth/2);
+	roof.rotateX(3.14);
+	group.add(roof);
+	door = creerCloison('door', 2.5, 3, 0.1, wood_door);
+	door.position.set(3.75, 0, 0);
+	group.add(door);
 	walls = []
 	walls.push(creerCloison(nom.concat('_wall_front'), length - 2.5, 3, 0.1, concrete));
 	walls.push(creerCloison(nom.concat('_wall_back'), length, 3, 0.1, concrete));

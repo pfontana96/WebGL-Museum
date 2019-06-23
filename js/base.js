@@ -142,40 +142,50 @@ function creerSalle(nom, length, depth, artist){
 			case 1:
 				for(var j = 1; j<3;j++){
 					poster = creerPoster(nom.concat('_poster_',j),2,2,url.concat(artist,'/',artist,j.toString(),'.png'));
+					spotLight = creerSpotLight(poster);
+					walls[i].add(spotLight)
 					walls[i].add(poster);
 					poster.position.set(length/4*Math.pow(-1,j), 1.5,0.1);
 				}
 				break;
 			case 2:
 				var posters = [];
+				var lights = [];
 				posters.push(creerPoster(nom.concat('_poster_3'),2,2,url.concat(artist,'/',artist,'3.png')));
+				lights.push(creerSpotLight(posters[0]))
 				posters.push(creerPoster(nom.concat('_poster_4'),2,2,url.concat(artist,'/',artist,'4.png')));
+				lights.push(creerSpotLight(posters[1]))
 				posters.push(creerPoster(nom.concat('_poster_5'),2,2,url.concat(artist,'/',artist,'5.png')));
+				lights.push(creerSpotLight(posters[2]))
 				posters[0].position.set(-depth/3, 1.5, 0.1);
 				posters[1].position.set(0, 1.5, 0.1);
 				posters[2].position.set(depth/3, 1.5, 0.1);
 				for(var j = 0; j < posters.length; j++){
 					walls[i].add(posters[j]);
+					walls[i].add(lights[j]);
 				}
 				break;
 			case 3:
 				var posters = [];
+				var lights = [];
 				posters.push(creerPoster(nom.concat('_poster_6'),2,2,url.concat(artist,'/',artist,'6.png')));
+				lights.push(creerSpotLight(posters[0]))
 				posters.push(creerPoster(nom.concat('_poster_7'),2,2,url.concat(artist,'/',artist,'7.png')));
+				lights.push(creerSpotLight(posters[1]))
 				posters.push(creerPoster(nom.concat('_poster_8'),2,2,url.concat(artist,'/',artist,'8.png')));
+				lights.push(creerSpotLight(posters[2]))
 				posters[0].position.set(-depth/3, 1.5, 0.1);
 				posters[1].position.set(0, 1.5, 0.1);
 				posters[2].position.set(depth/3, 1.5, 0.1);
 				for(var j = 0; j < posters.length; j++){
 					walls[i].add(posters[j]);
+					walls[i].add(lights[j]);
 				}
 				break;
 		}
 		group.add(walls[i])
 	}
 	return group;
-
-
 }
 
 function creerEscalier(nom, height,width, length){
@@ -251,10 +261,6 @@ function creerText(description,largeur,hauteur){
     return mesh;
 }
 
-
-
-
-
 // ===================
 // Création de sources
 // ===================
@@ -289,6 +295,13 @@ function creerSourceAudio3d(listener, fileName, loop, volume, distance){
 
 function creerAmbientLight(){
 	var light = new THREE.AmbientLight(0xffffff,0.5);
+	return light;
+}
+
+function creerSpotLight(targetObject){
+	var light = new THREE.SpotLight(0x64a1a4, 0.8, 250, 0.28, 0.5, 1.1); //0xe6cf65 //0x64a1a4
+	light.position.set(5,-5,5)
+	light.target = targetObject;
 	return light;
 }
 

@@ -169,6 +169,8 @@ ObjectController.prototype.update = function(t){
 	ADNController(scene.getObjectByName("ADN"));
 	DecController(scene.getObjectByName("dec1"), t);
 	DecController(scene.getObjectByName("dec2"), t);
+	HallDoorController("port_sud_hall_1", this.scene.getObjectByName("hall"));
+	HallDoorController("port_sud_hall_2", this.scene.getObjectByName("hall"));
 	
 }
 
@@ -198,6 +200,41 @@ function DoorController(salle){
 	door.position.x = targetX;
 	door.position.z = targetZ;
 	door.rotation.y = targetAngle;
+}
+
+function HallDoorController(nom,hall){
+	door = hall.getObjectByName(nom);
+	if (nom == "port_sud_hall_1"){
+		var dx = hall.position.x - camera.position.x;
+		var dy = hall.position.y - camera.position.y;
+		var dz = hall.position.z - camera.position.z;
+		var targetAngle = 0;
+		var targetX = 1.5;//1.5;
+		var targetZ = 7.5;
+		if(Math.abs(dz)<2 || Math.abs(dx)<2 && Math.abs(dy)<2){
+			targetAngle = -Math.PI/2;
+			targetX += 1.15;
+			targetZ -= 1.25;
+		}
+		door.position.x = targetX;
+		door.position.z = targetZ;
+		door.rotation.y = targetAngle;
+	}else{
+		var dx = hall.position.x - camera.position.x;
+		var dy = hall.position.y - camera.position.y;
+		var dz = hall.position.z - camera.position.z;
+		var targetAngle = 0;
+		var targetX = -1.5;
+		var targetZ = 7.5;
+		if(Math.abs(dz)<2 || Math.abs(dx)<2 && Math.abs(dy)<2){
+			targetAngle = -Math.PI/2;
+			targetX -= 1.15;
+			targetZ -= 1.25;
+		}
+		door.position.x = targetX;
+		door.position.z = targetZ;
+		door.rotation.y = targetAngle;
+	}
 }
 
 function ADNController(adn){
